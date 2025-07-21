@@ -7,6 +7,10 @@
 # Compiled class file
 *.class
 
+#My extra files
+*.lst
+*.properties
+
 # User-specific files
 *.rsuser
 *.suo
