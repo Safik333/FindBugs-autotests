@@ -35,7 +35,7 @@ public class BrowserInteractionCases extends BaseTests {
         //Кнопками в браузере прошлись назад и вперёд, теперь, читая заголовок, убеждаемся, что сайт открылся
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement mainHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='Find Bugs']")));
-        Assertions.assertEquals("Провалена проверка на читаемость заголовка. Возможно сайт не открылся.", "Find Bugs", mainHeader.getText());
+        Assertions.assertEquals("Find Bugs", mainHeader.getText(), "Провалена проверка на читаемость заголовка. Возможно сайт не открылся.");
         
     }
 
@@ -80,6 +80,7 @@ public class BrowserInteractionCases extends BaseTests {
         assertTrue(isElementInViewport(element), "В области отображения отсутствует ожидаемый элемент внизу страницы");
 
     }
+    
     // Case 3.2  
     @Test
     public void scrollUp() {
@@ -94,45 +95,6 @@ public class BrowserInteractionCases extends BaseTests {
         WebElement element = driver.findElement(By.xpath("//h3[text()='Find Bugs']"));
         assertTrue(isElementInViewport(element), "В области отображения отсутствует ожидаемый элемент на верху страницы");
     }
-
-    /* @Test
-    void testSmoothScroll() {
-        // Находим элемент для прокрутки
-        WebElement element = driver.findElement(By.xpath("//img[@alt='uTest']"));
-        WebElement element1 = driver.findElement(By.xpath("//h3[text()='Find Bugs']"));
-
-
-    
-        // Создаем объект Actions
-        Actions actions = new Actions(driver);
-        
-        // Выполняем плавную прокрутку
-        actions.moveToElement(element).perform();
-        
-        // Проверяем, что элемент стал видимым
-        assertTrue(element.isDisplayed());
-        
-        //wait(1000);
-        //assertFalse(element1.isDisplayed());
-        
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//img[@alt='uTest']"))); 
-        }*/
-
-        
-
-
-    
-    
-    /* @Test
-    public void clickOnItem(){
-        
-
-    WebElement randItem = driver.findElement(By.xpath("//div[@id='ec_product_image_effect_4881370']/a"));
-    randItem.click();
-
-    } */
-
 
 
 }

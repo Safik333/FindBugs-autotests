@@ -35,6 +35,16 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>2.0.13</version>
+            </dependency>
+
+
+            
+
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
@@ -87,7 +97,17 @@
             <artifactId>junit-platform-launcher</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>2.29.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
+    
 
     <build>
         <plugins>
@@ -98,13 +118,20 @@
                 <version>3.5.3</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore> <!-- игнорировать упавшие тесты и включать следующие-->
-                    <includes>**/*TestCase.java</includes> <!-- маска для запуска файлов тестов -->
+                    <includes>**/BrowserInteractionCases.java</includes> <!-- маска для запуска файлов тестов -->
                     <argLine>
                         -Xmx1024m <!-- ограничение компилятора 1024Мб оперативной памяти -->
                     </argLine>
-                    <systemPropertyVariables>
-                        <allure.results.directory>${project.build.directory}/reports/allure-results</allure.results.directory>
-                    </systemPropertyVariables>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.listener.AllureListener</value>
+                        </property>
+                    </properties>
+                    <workingDirectory>${project.build.directory}<!-- /allure-results --></workingDirectory>
+                    <!-- <systemPropertyVariables> -->
+                        <!-- <allure.results.directory>${project.build.directory}\reports\allure-results</allure.results.directory> -->
+                    <!-- </systemPropertyVariables> -->
                 </configuration>
 
             </plugin>
@@ -114,14 +141,14 @@
                 <artifactId>allure-maven</artifactId>
                 <version>2.12.0</version>
                 <configuration>
-                    <reportVersion>2.30.0</reportVersion>
-                    <resultsDirectory>${project.build.directory}/reports/allure-results</resultsDirectory> <!-- путь, куда сохраняются файлы для отчёта -->
-                    <reportDirectory>${project.build.directory}/reports/allure-reports</reportDirectory> <!-- путь, куда сохраняется сам отчёт -->
+                    <reportVersion>2.29.0</reportVersion>
+                    <resultsDirectory>${project.build.directory}\target\allure-results</resultsDirectory> <!-- путь, куда сохраняются файлы для отчёта -->
+                    <reportDirectory>${project.build.directory}\target\allure-reports</reportDirectory>  <!-- путь, куда сохраняется сам отчёт -->
                 </configuration>
                 <executions>
                     <execution>
                         <id>allure-IS-WORKING</id> <!-- текст, который пишется в терминале при запуске allure -->
-                        <phase>package</phase>
+                        <phase>test</phase>
                         <goals>
                             <goal>install</goal>
                         </goals>
