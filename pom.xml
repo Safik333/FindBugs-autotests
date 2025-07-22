@@ -118,7 +118,7 @@
                 <version>3.5.3</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore> <!-- игнорировать упавшие тесты и включать следующие-->
-                    <includes>**/BrowserInteractionCases.java</includes> <!-- маска для запуска файлов тестов -->
+                    <includes>**/*Cases.java</includes> <!-- маска для запуска файлов тестов -->
                     <argLine>
                         -Xmx1024m <!-- ограничение компилятора 1024Мб оперативной памяти -->
                     </argLine>
