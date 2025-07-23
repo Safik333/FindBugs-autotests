@@ -35,8 +35,8 @@ public class BaseTests {
 
         // Установка таймеров
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(8));
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(5)); // ожидание выполнения АСИНХРОННОГО скрипта, который работает параллельно с тест-кейсом
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15)); // ожидает появление элемента на странице
+        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(5)); 
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
 
 
@@ -53,9 +53,7 @@ public class BaseTests {
 
     @BeforeEach
     void beforeEach(){
-        // Перед каждым кейсом происходит возврат на главную страницу
-        // driver.get(url);
-        
+
     }
 
     @AfterEach 
@@ -65,6 +63,6 @@ public class BaseTests {
 
     @AfterAll
     static void afeterAll(){
-        
+        //driver.quit();
     }
 }

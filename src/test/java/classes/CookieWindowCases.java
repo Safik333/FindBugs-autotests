@@ -29,6 +29,8 @@ import base.BaseTests;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CookieWindowCases extends BaseTests{
 
+    protected static boolean setupCompleted;
+
     // метод жёсткого ожидания в миллисекундах
     public void wait(int milliSecond){
         try {
@@ -237,18 +239,12 @@ public class CookieWindowCases extends BaseTests{
         WebElement acceptCookieBtn = driver.findElement(By.xpath("//a[@aria-label='Accept cookies']"));
         assertEquals("Accept cookies", acceptCookieBtn.getText(), "Не совпал текст в кнопке принятия всех кук");
     }  
+
     
-    // Case 11
-    // Проверяем, что окно куки закрылось после принятия только функциональных кук
-/*     @Test
-    public void isCookieWindowNotDisplayedFunc(){
-        assume
-        WebElement cookieWindow = driver.findElement(By.id("cc-window"));
-        WebElement funcCookieBtn = driver.findElement(By.xpath("//a[@aria-label='Functional only']"));
-        funcCookieBtn.click();
-        assertFalse(cookieWindow.isDisplayed());
+/*     @AfterAll
+    public static void depCookieCases(){
+        setupCompleted = true;
     } */
-    
 
 
 }
